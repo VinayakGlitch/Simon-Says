@@ -1,11 +1,15 @@
 let userSeq=[];
 let gameSeq=[];
+let highestScore=0;
 
 let btns=["yellow","red","purple","green"];
 
 let started= false;
 let level= 0;
 let h3=document.querySelector("h3");
+
+let h4=document.querySelector("h4");
+
 
 document.addEventListener("keypress", function(){
     if(started==false){
@@ -44,6 +48,7 @@ function levelUp(){
     gameSeq.push(randColor);
     console.log(gameSeq);
     gameFlash(randbtn);
+    HighScore();
 }
 
 
@@ -55,6 +60,8 @@ function checkAns(idx){
         
     }else{
         h3.innerHTML=`Game Over! Your score was <b>${level}</b>  <br>Press any key to start.`;
+
+        
 
         document.querySelector("body").style.backgroundColor="red";
 
@@ -88,5 +95,15 @@ function reset(){
     level=0;
     userSeq=[];
     
+    
 
+}
+
+
+function HighScore(){
+    if(highestScore<level){
+        highestScore=level;
+        h4.innerHTML=`Highest Score: ${highestScore}`;
+    }
+    
 }
